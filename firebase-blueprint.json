@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "user": {
+      "title": "User Profile",
+      "description": "User profile representation in CAgenix",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "Display name" },
+        "role": { "type": "string", "enum": ["officer", "accountant", "auditor"], "description": "Corporate ledger role" },
+        "createdAt": { "type": "string", "description": "ISO timestamp of creation" }
+      },
+      "required": ["uid", "email"]
+    },
+    "transaction": {
+      "title": "Financial Transaction Voucher",
+      "description": "Indian ledger transaction voucher with GST & TDS metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Voucher ID" },
+        "date": { "type": "string", "description": "Transaction date" },
+        "description": { "type": "string", "description": "Description of voucher" },
+        "category": { "type": "string", "description": "Accounting category" },
+        "inflow": { "type": "number", "description": "Inflow in INR" },
+        "outflow": { "type": "number", "description": "Outflow in INR" },
+        "status": { "type": "string", "enum": ["reconciled", "unassigned", "pending", "scrutinized"], "description": "Reconciliation status" },
+        "reference": { "type": "string", "description": "UTR / Invoice reference number" },
+        "gstin": { "type": "string", "description": "Counterparty GSTIN" },
+        "receiptAttached": { "type": "boolean", "description": "Whether receipt is attached" },
+        "ownerId": { "type": "string", "description": "Owner user ID" }
+      },
+      "required": ["id", "description", "category", "status", "ownerId"]
+    },
+    "attention_item": {
+      "title": "Attention Required Item",
+      "description": "Actionable compliance, reconciliation, and payment item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Item ID" },
+        "badgeText": { "type": "string", "description": "Badge classification" },
+        "badgeColor": { "type": "string", "description": "Badge color category" },
+        "title": { "type": "string", "description": "Item headline" },
+        "description": { "type": "string", "description": "Item details" },
+        "actionLabel": { "type": "string", "description": "Action CTA label" },
+        "amount": { "type": "number", "description": "Amount in INR" },
+        "ownerId": { "type": "string", "description": "Owner user ID" }
+      },
+      "required": ["id", "badgeText", "title", "actionLabel", "ownerId"]
+    },
+    "activity": {
+      "title": "Audit Activity Log",
+      "description": "Ledger activity audit log item",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Activity ID" },
+        "title": { "type": "string", "description": "Activity action" },
+        "description": { "type": "string", "description": "Activity details" },
+        "timestamp": { "type": "string", "description": "Relative or ISO timestamp" },
+        "type": { "type": "string", "enum": ["import", "payment", "compliance"], "description": "Activity classification" },
+        "amount": { "type": "number", "description": "INR Amount involved" },
+        "ownerId": { "type": "string", "description": "Owner user ID" }
+      },
+      "required": ["id", "title", "description", "type", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "user",
+      "description": "User profiles"
+    },
+    "/users/{userId}/transactions/{transactionId}": {
+      "schema": "transaction",
+      "description": "User transactions and vouchers"
+    },
+    "/users/{userId}/attention_items/{itemId}": {
+      "schema": "attention_item",
+      "description": "User actionable attention items"
+    },
+    "/users/{userId}/activities/{activityId}": {
+      "schema": "activity",
+      "description": "User activity audit logs"
+    }
+  }
+}

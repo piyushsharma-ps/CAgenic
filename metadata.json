@@ -1,0 +1,8 @@
+{
+  "name": "Remix CAgenix - Indian Finances, Simplified",
+  "description": "Institutional-grade Indian financial operating system, automated GST \u0026 TDS ledger, cash flow analytics in Lakhs \u0026 Crores, and AI Chartered Accountant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

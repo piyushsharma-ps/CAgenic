@@ -1,0 +1,6 @@
+{
+  "summary":  "Comprehensive architectural blueprint for transforming CAgenix into an institutional-grade Indian financial operating system. Converts currency to Indian Rupee (₹) with Lakh/Crore notation, implements GST (CGST/SGST/IGST) and TDS compliance (194C, 194J, 194Q), and connects domestic banking and gateway rails (Razorpay, UPI, HDFC, ICICI, Cashfree) while preserving the Executive Precision design aesthetic.",
+  "updatedAt":  "2026-10-23T17:18:04.928762540Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}
